@@ -92,5 +92,16 @@ you have the right to share.
 
 ## Licence
 
-To be decided before this repo is announced. The tiles in it are Auto
-Tournament's own artwork, not the games' own logos.
+[MIT](LICENSE), for everything in this repository: the pack files and the
+tiles. Take them, change them, ship them.
+
+The platform itself is under a different, noncommercial licence. This repo is
+deliberately not, because a list of games is only useful if anybody can copy
+from it, fork it and run their own.
+
+The tiles are Auto Tournament's own artwork — drawn for this project, not the
+games' own logos or key art. Adding a game means adding a tile you drew or
+have the right to share, not one you found.
+
+By opening a pull request you agree to your contribution being published
+under this licence.
