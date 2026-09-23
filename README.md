@@ -80,11 +80,35 @@ Run your SVG through SVGO first; the platform repo has the config.
 A pack names its tile rather than carrying it, so the JSON stays something a
 person can read and a reviewer can diff.
 
+### index.json
+
+Each entry repeats just enough for the app to draw a card before it downloads
+anything: the slug, name, version, engine, a one-line description, the pack's
+path, and the tile's path *relative to this file* (`icons/<slug>.svg`, without
+the `../`).
+
+```json
+{
+  "schema": 1,
+  "packs": [
+    {
+      "slug": "call-of-duty",
+      "name": "Call of Duty",
+      "version": "1.0.0",
+      "engine": "manual-report",
+      "description": "One line.",
+      "file": "packs/call-of-duty.json",
+      "icon": "icons/call-of-duty.svg"
+    }
+  ]
+}
+```
+
 ## Adding a game
 
 1. Write `packs/<slug>.json`.
 2. Put its tile at `icons/<slug>.svg` and point `icon` at `../icons/<slug>.svg`.
-3. Add the game to `index.json`.
+3. Add the game to `index.json`, with `icon` as `icons/<slug>.svg`.
 4. Open a pull request.
 
 Please only add a game you would actually run a tournament for, with a tile

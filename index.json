@@ -7,7 +7,8 @@
       "version": "1.0.0",
       "engine": "manual-report",
       "description": "Search and Destroy, Hardpoint and Control, reported by the teams that played them.",
-      "file": "packs/call-of-duty.json"
+      "file": "packs/call-of-duty.json",
+      "icon": "icons/call-of-duty.svg"
     }
   ]
 }
