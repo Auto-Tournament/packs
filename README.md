@@ -32,7 +32,7 @@ different kind of module.
   "aliases": ["cod"],
   "version": "1.0.0",
   "description": "One line. Shown on the Modules page.",
-  "icon": "<svg viewBox=\"0 0 2048 2048\">…</svg>",
+  "icon": "../icons/call-of-duty.svg",
   "report": { "confirmation": "opponent", "confirmTimeoutMin": 60 },
   "stats": [
     { "key": "kills", "label": "Kills", "type": "integer", "scope": "player" }
@@ -49,7 +49,7 @@ different kind of module.
 | `aliases` | no | Extra search terms. |
 | `version` | no | Your own version string. Re-importing the same slug updates it. |
 | `description` | no | One line, at most 300 characters. |
-| `icon` | no | The square tile, as SVG markup. Without one the app shows the game's text mark. |
+| `icon` | no | Where the tile lives, relative to this file — `../icons/<slug>.svg`. A path, never markup and never a URL. Without one the app shows the game's text mark. |
 | `report.confirmation` | no | `opponent` (the other captain agrees) or `admin`. |
 | `report.confirmTimeoutMin` | no | How long the opponent has before it goes to an admin. |
 | `stats` | no | Up to 40 fields. `type` is `integer`, `decimal` or `text`; `scope` is `player` or `team`. |
@@ -71,11 +71,21 @@ tile is inlined into the admin's page, so a `<script>`, an `onload=`, a
 `<foreignObject>` or a reference to another host is a refusal with a reason.
 Run your SVG through SVGO first; the platform repo has the config.
 
+## Layout
+
+    index.json              every pack in this repo
+    packs/<slug>.json       one game
+    icons/<slug>.svg        its tile
+
+A pack names its tile rather than carrying it, so the JSON stays something a
+person can read and a reviewer can diff.
+
 ## Adding a game
 
 1. Write `packs/<slug>.json`.
-2. Add it to `index.json`.
-3. Open a pull request.
+2. Put its tile at `icons/<slug>.svg` and point `icon` at `../icons/<slug>.svg`.
+3. Add the game to `index.json`.
+4. Open a pull request.
 
 Please only add a game you would actually run a tournament for, with a tile
 you have the right to share.
