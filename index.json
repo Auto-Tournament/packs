@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "packs": [
+    {
+      "slug": "call-of-duty",
+      "name": "Call of Duty",
+      "version": "1.0.0",
+      "engine": "manual-report",
+      "description": "Search and Destroy, Hardpoint and Control, reported by the teams that played them.",
+      "file": "packs/call-of-duty.json"
+    }
+  ]
+}
