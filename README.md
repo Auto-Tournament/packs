@@ -73,7 +73,8 @@ Run your SVG through SVGO first; the platform repo has the config.
 
 ## Layout
 
-    index.json              every pack in this repo
+    catalog.json            the game catalog: every pack, and signed code modules
+    index.json              every pack in this repo (read by 3.0 beta instances)
     packs/<slug>.json       one game
     icons/<slug>.svg        its tile
 
@@ -104,11 +105,47 @@ the `../`).
 }
 ```
 
+### catalog.json
+
+What Auto Tournament 3.0 reads: the one list an admin installs games from.
+`packs` is exactly `index.json`'s list — keep the two the same. `modules`
+lists code modules (CS2 first) and their releases:
+
+```json
+{
+  "schema": 1,
+  "packs": [ … ],
+  "modules": [
+    {
+      "id": "cs2",
+      "name": "Counter-Strike 2",
+      "description": "One line.",
+      "icon": "icons/cs2.svg",
+      "releases": [
+        {
+          "version": "3.0.0",
+          "serverApi": "^0.1.0",
+          "clientApi": "^0.2.0",
+          "url": "https://github.com/Auto-Tournament/auto-tournament/releases/download/module-cs2-v3.0.0/cs2-3.0.0.atmod",
+          "sha256": "…",
+          "size": 1234567
+        }
+      ]
+    }
+  ]
+}
+```
+
+A module entry is pasted from the `catalog-entry.json` its release publishes.
+Nothing here is trusted because it is listed: an instance installs a code
+module only if the release is signed by a key compiled into the platform, and
+downloads only from `https://github.com/Auto-Tournament/`.
+
 ## Adding a game
 
 1. Write `packs/<slug>.json`.
 2. Put its tile at `icons/<slug>.svg` and point `icon` at `../icons/<slug>.svg`.
-3. Add the game to `index.json`, with `icon` as `icons/<slug>.svg`.
+3. Add the game to `index.json` and to `packs` in `catalog.json`, with `icon` as `icons/<slug>.svg`.
 4. Open a pull request.
 
 Please only add a game you would actually run a tournament for, with a tile
