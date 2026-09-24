@@ -3,6 +3,21 @@
 Games for [Auto Tournament](https://github.com/Auto-Tournament/auto-tournament),
 as files.
 
+<div align="center">
+
+### Sponsor Auto Tournament
+
+Running tournaments or LANs with Auto Tournament? Your organisation can keep it growing.
+Auto Tournament is built and maintained by one person — sponsorships pay for development, test servers and infrastructure.
+
+[![Sponsor on GitHub](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/sivert-io)
+[![Support on Ko-fi](https://img.shields.io/badge/Support-Ko--fi-ff5e5b?logo=kofi&logoColor=white)](https://ko-fi.com/sivert)
+[![Become a sponsor](https://img.shields.io/badge/Become%20a%20sponsor-Discord-5865F2?logo=discord&logoColor=white)](https://discord.gg/n7gHYau7aW)
+
+Using it for a business, paid events or hosting? That needs a commercial licence → [Licensing](https://docs.autotournament.gg/reference/licensing)
+
+</div>
+
 A **game pack** describes one game: its name, its square tile, and how a
 result gets reported. Nothing in a pack executes — it is data, and it runs on
 a module the platform already has. That is what makes a pack safe to hand
@@ -152,6 +167,10 @@ downloads only from `https://github.com/Auto-Tournament/`.
 
 Please only add a game you would actually run a tournament for, with a tile
 you have the right to share.
+
+## Sponsors
+
+Your logo here — [sponsor Auto Tournament](https://discord.gg/n7gHYau7aW) to be listed.
 
 ## Licence
 
