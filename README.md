@@ -137,6 +137,8 @@ lists code modules (CS2 first) and their releases:
 ```
 
 A module entry is pasted from the `catalog-entry.json` its release publishes.
+That entry names its tile `icons/<id>.svg`; the release attaches the tile as
+`<id>.svg` — add it here at that path.
 Nothing here is trusted because it is listed: an instance installs a code
 module only if the release is signed by a key compiled into the platform, and
 downloads only from `https://github.com/Auto-Tournament/`.
