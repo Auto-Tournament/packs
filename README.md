@@ -116,16 +116,16 @@ you have the right to share.
 
 ## Licence
 
-[MIT](LICENSE), for everything in this repository: the pack files and the
-tiles. Take them, change them, ship them.
+[PolyForm Noncommercial 1.0.0](LICENSE), for everything in this repository: the
+pack files and the tiles. The same licence as the platform: free to use, change
+and share for non-commercial purposes; commercial use needs a licence from the
+author. See [Licensing and commercial use](https://docs.autotournament.gg/reference/licensing).
 
-The platform itself is under a different, noncommercial licence. This repo is
-deliberately not, because a list of games is only useful if anybody can copy
-from it, fork it and run their own.
+Packs published here before this change were MIT and stay MIT.
 
 The tiles are Auto Tournament's own artwork — drawn for this project, not the
 games' own logos or key art. Adding a game means adding a tile you drew or
 have the right to share, not one you found.
 
-By opening a pull request you agree to your contribution being published
-under this licence.
+Before your first pull request is merged you'll be asked to sign the
+[Contributor License Agreement](CLA.md) with a comment on the pull request.
