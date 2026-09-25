@@ -200,7 +200,8 @@ Your logo here — [sponsor Auto Tournament](https://discord.gg/n7gHYau7aW) to b
 [PolyForm Noncommercial 1.0.0](LICENSE), for everything in this repository: the
 pack files and the tiles. The same licence as the platform: free to use, change
 and share for non-commercial purposes; commercial use needs a licence from the
-author. See [Licensing and commercial use](https://docs.autotournament.gg/reference/licensing).
+author. See [pricing](https://autotournament.gg/pricing) and
+[Licensing and commercial use](https://docs.autotournament.gg/reference/licensing).
 
 Packs published here before this change were MIT and stay MIT.
 
