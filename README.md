@@ -203,7 +203,10 @@ and share for non-commercial purposes; commercial use needs a licence from the
 author. See [pricing](https://autotournament.gg/pricing) and
 [Licensing and commercial use](https://docs.autotournament.gg/reference/licensing).
 
-Packs published here before this change were MIT and stay MIT.
+A Platform license covers the game packs used with it; there is no separate
+price for packs.
+
+Packs published here before 24 September 2026 were MIT and stay MIT.
 
 The tiles are Auto Tournament's own artwork — drawn for this project, not the
 games' own logos or key art. Adding a game means adding a tile you drew or
