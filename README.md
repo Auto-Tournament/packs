@@ -60,6 +60,7 @@ different kind of module.
 | `schema` | yes | `1`. An instance refuses a schema it does not read. |
 | `slug` | yes | `lower-case-with-hyphens`. An IGDB slug where one exists, so search enriches the same row instead of adding a second. |
 | `name` | yes | What people call the game. |
+| `igdbId` | no | The game's numeric IGDB id — the "IGDB ID" on its igdb.com page. A game a player picks from IGDB search is matched to this pack by it first, so the pill draws this pack's app icon even where IGDB's slug is not the pack's (`trackmania--2`, `deadlock--2`). Leave it out for a franchise pack or a game IGDB has no single entry for. Needs an instance that knows the field (older 3.0 betas refuse it). |
 | `engine` | yes | The module that runs it. `manual-report` today. |
 | `aliases` | no | Extra search terms. |
 | `version` | no | Your own version string. Re-importing the same slug updates it. |
@@ -118,9 +119,10 @@ person can read and a reviewer can diff.
 ### index.json
 
 Each entry repeats just enough for the app to draw a card before it downloads
-anything: the slug, name, version, engine, a one-line description, the pack's
-path, the tile's path *relative to this file* (`icons/<slug>.svg`, without
-the `../`), and the app icon's the same way (`app-icons/<slug>.webp`).
+anything: the slug, name, IGDB id (when the pack has one), version, engine, a
+one-line description, the pack's path, the tile's path *relative to this file*
+(`icons/<slug>.svg`, without the `../`), and the app icon's the same way
+(`app-icons/<slug>.webp`).
 
 ```json
 {
@@ -180,10 +182,10 @@ downloads only from `https://github.com/Auto-Tournament/`.
 
 ## Adding a game
 
-1. Write `packs/<slug>.json`.
+1. Write `packs/<slug>.json`, with the game's `igdbId` from its igdb.com page when IGDB has one entry for it.
 2. Put its tile at `icons/<slug>.svg` and point `icon` at `../icons/<slug>.svg`.
 3. If the game has a square app icon, put it at `app-icons/<slug>.webp` (128 × 128, at most 25 KB), point `appIcon` at `../app-icons/<slug>.webp`, and add a row to `app-icons/SOURCES.md`.
-4. Add the game to `index.json` and to `packs` in `catalog.json`, with `icon` as `icons/<slug>.svg` (and `appIcon` as `app-icons/<slug>.webp`).
+4. Add the game to `index.json` and to `packs` in `catalog.json`, with its `igdbId`, `icon` as `icons/<slug>.svg` (and `appIcon` as `app-icons/<slug>.webp`).
 5. Open a pull request.
 
 Please only add a game you would actually run a tournament for, with a tile
