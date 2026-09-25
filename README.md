@@ -65,6 +65,7 @@ different kind of module.
 | `version` | no | Your own version string. Re-importing the same slug updates it. |
 | `description` | no | One line, at most 300 characters. |
 | `icon` | no | Where the tile lives, relative to this file — `../icons/<slug>.svg`. A path, never markup and never a URL. Without one the app shows the game's text mark. |
+| `appIcon` | no | Where the game's own square app icon lives, relative to this file — `../app-icons/<slug>.webp`. A PNG or WebP, never a URL. Without one the small game pills fall back to the IGDB cover, then the game's initials. |
 | `report.confirmation` | no | `opponent` (the other captain agrees) or `admin`. |
 | `report.confirmTimeoutMin` | no | How long the opponent has before it goes to an admin. |
 | `stats` | no | Up to 40 fields. `type` is `integer`, `decimal` or `text`; `scope` is `player` or `team`. |
@@ -86,12 +87,30 @@ tile is inlined into the admin's page, so a `<script>`, an `onload=`, a
 `<foreignObject>` or a reference to another host is a refusal with a reason.
 Run your SVG through SVGO first; the platform repo has the config.
 
+## App icons
+
+The tile is our art. The app icon is the game's own: the square icon players
+know it by, the one on their phone, desktop or launcher. The app draws it in
+the 20 px game pills ("What do you play?", a profile's games), where a player
+has to pick out their game at a glance and a wide wordmark shrinks to a smear.
+
+An app icon is a **square PNG or WebP, 128 × 128, at most 25 KB**. The
+platform checks the bytes, not the file name — a file that is not a PNG or
+WebP, is not square, is outside 32–512 px or is over 25 KB is refused on
+import. Never a slice of a wordmark: if a game has no square icon, leave
+`appIcon` out.
+
+Record where every icon came from in [`app-icons/SOURCES.md`](app-icons/SOURCES.md).
+Game icons are trademarks of their owners and are used only to identify the
+game.
+
 ## Layout
 
     catalog.json            the game catalog: every pack, and signed code modules
     index.json              every pack in this repo (read by 3.0 beta instances)
     packs/<slug>.json       one game
     icons/<slug>.svg        its tile
+    app-icons/<slug>.webp   its square app icon, and SOURCES.md
 
 A pack names its tile rather than carrying it, so the JSON stays something a
 person can read and a reviewer can diff.
@@ -100,8 +119,8 @@ person can read and a reviewer can diff.
 
 Each entry repeats just enough for the app to draw a card before it downloads
 anything: the slug, name, version, engine, a one-line description, the pack's
-path, and the tile's path *relative to this file* (`icons/<slug>.svg`, without
-the `../`).
+path, the tile's path *relative to this file* (`icons/<slug>.svg`, without
+the `../`), and the app icon's the same way (`app-icons/<slug>.webp`).
 
 ```json
 {
@@ -114,7 +133,8 @@ the `../`).
       "engine": "manual-report",
       "description": "One line.",
       "file": "packs/call-of-duty.json",
-      "icon": "icons/call-of-duty.svg"
+      "icon": "icons/call-of-duty.svg",
+      "appIcon": "app-icons/call-of-duty.webp"
     }
   ]
 }
@@ -162,8 +182,9 @@ downloads only from `https://github.com/Auto-Tournament/`.
 
 1. Write `packs/<slug>.json`.
 2. Put its tile at `icons/<slug>.svg` and point `icon` at `../icons/<slug>.svg`.
-3. Add the game to `index.json` and to `packs` in `catalog.json`, with `icon` as `icons/<slug>.svg`.
-4. Open a pull request.
+3. If the game has a square app icon, put it at `app-icons/<slug>.webp` (128 × 128, at most 25 KB), point `appIcon` at `../app-icons/<slug>.webp`, and add a row to `app-icons/SOURCES.md`.
+4. Add the game to `index.json` and to `packs` in `catalog.json`, with `icon` as `icons/<slug>.svg` (and `appIcon` as `app-icons/<slug>.webp`).
+5. Open a pull request.
 
 Please only add a game you would actually run a tournament for, with a tile
 you have the right to share.
