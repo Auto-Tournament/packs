@@ -70,6 +70,7 @@ different kind of module.
 | `report.confirmation` | no | `opponent` (the other captain agrees) or `admin`. |
 | `report.confirmTimeoutMin` | no | How long the opponent has before it goes to an admin. |
 | `stats` | no | Up to 40 fields. `type` is `integer`, `decimal` or `text`; `scope` is `player` or `team`. |
+| `account` | no | The account players need for this game, as a sign-in provider: `steam`, `epic`, `discord`, `google`, `github`, `twitch` or `oidc`. It lists the game under that account on people's connections page (Rocket League → Epic Games). Leave it out when the game is on several platforms. Needs an instance that knows the field (older 3.0 betas refuse it). |
 
 Unknown fields are refused rather than ignored, so a pack written for a newer
 schema fails loudly instead of quietly doing less than it says.
