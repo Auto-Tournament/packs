@@ -58,15 +58,15 @@ different kind of module.
 | Field | Required | What it is |
 | --- | --- | --- |
 | `schema` | yes | `1`. An instance refuses a schema it does not read. |
-| `slug` | yes | `lower-case-with-hyphens`. An IGDB slug where one exists, so search enriches the same row instead of adding a second. |
+| `slug` | yes | `lower-case-with-hyphens`. The game's usual slug (`counter-strike-2`, `rocket-league`), so search enriches the same row instead of adding a second. |
 | `name` | yes | What people call the game. |
-| `igdbId` | no | The game's numeric IGDB id — the "IGDB ID" on its igdb.com page. A game a player picks from IGDB search is matched to this pack by it first, so the pill draws this pack's app icon even where IGDB's slug is not the pack's (`trackmania--2`, `deadlock--2`). Leave it out for a franchise pack or a game IGDB has no single entry for. Needs an instance that knows the field (older 3.0 betas refuse it). |
+| `igdbId` | no | Legacy. Game search used IGDB before 3.0 and uses Wikidata now. This id only links games that an older instance added through IGDB search to this pack. New packs leave it out. |
 | `engine` | yes | The module that runs it. `manual-report` today. |
 | `aliases` | no | Extra search terms. |
 | `version` | no | Your own version string. Re-importing the same slug updates it. |
 | `description` | no | One line, at most 300 characters. |
 | `icon` | no | Where the tile lives, relative to this file — `../icons/<slug>.svg`. A path, never markup and never a URL. Without one the app shows the game's text mark. |
-| `appIcon` | no | Where the game's own square app icon lives, relative to this file — `../app-icons/<slug>.webp`. A PNG or WebP, never a URL. Without one the small game pills fall back to the IGDB cover, then the game's initials. |
+| `appIcon` | no | Where the game's own square app icon lives, relative to this file — `../app-icons/<slug>.webp`. A PNG or WebP, never a URL. Without one the small game pills show the game's initials. |
 | `report.confirmation` | no | `opponent` (the other captain agrees) or `admin`. |
 | `report.confirmTimeoutMin` | no | How long the opponent has before it goes to an admin. |
 | `stats` | no | Up to 40 fields. `type` is `integer`, `decimal` or `text`; `scope` is `player` or `team`. |
@@ -120,7 +120,7 @@ person can read and a reviewer can diff.
 ### index.json
 
 Each entry repeats just enough for the app to draw a card before it downloads
-anything: the slug, name, IGDB id (when the pack has one), version, engine, a
+anything: the slug, name, legacy IGDB id (older packs only), version, engine, a
 one-line description, the pack's path, the tile's path *relative to this file*
 (`icons/<slug>.svg`, without the `../`), and the app icon's the same way
 (`app-icons/<slug>.webp`).
@@ -183,10 +183,10 @@ downloads only from `https://github.com/Auto-Tournament/`.
 
 ## Adding a game
 
-1. Write `packs/<slug>.json`, with the game's `igdbId` from its igdb.com page when IGDB has one entry for it.
+1. Write `packs/<slug>.json`.
 2. Put its tile at `icons/<slug>.svg` and point `icon` at `../icons/<slug>.svg`.
 3. If the game has a square app icon, put it at `app-icons/<slug>.webp` (128 × 128, at most 25 KB), point `appIcon` at `../app-icons/<slug>.webp`, and add a row to `app-icons/SOURCES.md`.
-4. Add the game to `index.json` and to `packs` in `catalog.json`, with its `igdbId`, `icon` as `icons/<slug>.svg` (and `appIcon` as `app-icons/<slug>.webp`).
+4. Add the game to `index.json` and to `packs` in `catalog.json`, with `icon` as `icons/<slug>.svg` (and `appIcon` as `app-icons/<slug>.webp`).
 5. Open a pull request.
 
 Please only add a game you would actually run a tournament for, with a tile
