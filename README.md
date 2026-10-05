@@ -1,217 +1,56 @@
-# Auto Tournament game packs
-
-Games for [Auto Tournament](https://github.com/Auto-Tournament/auto-tournament),
-as files.
-
 <div align="center">
-
-### Sponsor Auto Tournament
-
-Running tournaments or LANs with Auto Tournament? Your organisation can keep it growing.
-Auto Tournament is built and maintained by one person — sponsorships pay for development, test servers and infrastructure.
-
-[![Sponsor on GitHub](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/sivert-io)
-[![Support on Ko-fi](https://img.shields.io/badge/Support-Ko--fi-ff5e5b?logo=kofi&logoColor=white)](https://ko-fi.com/sivert)
-[![Become a sponsor](https://img.shields.io/badge/Become%20a%20sponsor-Discord-5865F2?logo=discord&logoColor=white)](https://discord.gg/n7gHYau7aW)
-
-Using it for a business, paid events or hosting? That needs a commercial licence → [Licensing](https://docs.autotournament.gg/reference/licensing)
-
+  <h1>Auto Tournament game packs</h1>
+  <p><strong>Games for Auto Tournament, as data files you can review and import</strong></p>
+  <p>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-PolyForm%20Noncommercial-blue.svg" alt="License: PolyForm Noncommercial" /></a>
+    <a href="https://docs.autotournament.gg"><img src="https://img.shields.io/badge/docs-docs.autotournament.gg-blue" alt="Docs" /></a>
+    <a href="https://discord.gg/n7gHYau7aW"><img src="https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white" alt="Discord" /></a>
+  </p>
 </div>
 
-A **game pack** describes one game: its name, its square tile, and how a
-result gets reported. Nothing in a pack executes — it is data, and it runs on
-a module the platform already has. That is what makes a pack safe to hand
-around, review in a pull request, and import from a stranger.
+<br />
 
-An admin imports one from **Modules** in their instance, either by browsing
-this repo from inside the app or by downloading a file and uploading it.
+A game pack describes one game for [Auto Tournament](https://github.com/Auto-Tournament/auto-tournament): its name, its square tile and how a result gets reported. Nothing in a pack runs. It is data for a module the platform already has, which is what makes a pack safe to review in a pull request and import from a stranger.
 
-## What a pack can and cannot do
+A pack is for a game the platform can't watch: the teams know the result and report it (Rocket League, chess, a fighting game on a console). A game the platform watches by reading a game server, like Counter-Strike 2, needs code and is a different kind of module.
 
-A pack works for a game **the platform cannot watch** — the teams know the
-result and report it. Rocket League, chess, a fighting game on a console in
-somebody's living room.
+## Features
 
-A game the platform *watches*, reading rounds off a game server the way it
-does for Counter-Strike 2, is not a pack. That needs code, and code is a
-different kind of module.
+- Packs for games without a server integration, run on the `manual-report` engine
+- Results confirmed by the other captain or by an admin, with a timeout
+- Optional per-player stats (kills, goals, ...) for each game
+- A square tile per game, drawn for this project, and the game's own app icon where one is allowed
+- `index.json` and `catalog.json`, so an instance can list every pack without downloading them all
 
-## The format
+## Install
 
-```json
-{
-  "schema": 1,
-  "slug": "call-of-duty",
-  "name": "Call of Duty",
-  "engine": "manual-report",
-  "aliases": ["cod"],
-  "version": "1.0.0",
-  "description": "One line. Shown on the Modules page.",
-  "icon": "../icons/call-of-duty.svg",
-  "report": { "confirmation": "opponent", "confirmTimeoutMin": 60 },
-  "stats": [
-    { "key": "kills", "label": "Kills", "type": "integer", "scope": "player" }
-  ]
-}
-```
+In your Auto Tournament instance, open **Modules** and browse the game packs, then import the ones you want. You can also download a pack file from `packs/` and upload it on the same page.
 
-| Field | Required | What it is |
-| --- | --- | --- |
-| `schema` | yes | `1`. An instance refuses a schema it does not read. |
-| `slug` | yes | `lower-case-with-hyphens`. The game's usual slug (`counter-strike-2`, `rocket-league`), so search enriches the same row instead of adding a second. |
-| `name` | yes | What people call the game. |
-| `igdbId` | no | Legacy. Game search used IGDB before 3.0 and uses Wikidata now. This id only links games that an older instance added through IGDB search to this pack. New packs leave it out. |
-| `engine` | yes | The module that runs it. `manual-report` today. |
-| `aliases` | no | Extra search terms. |
-| `version` | no | Your own version string. Re-importing the same slug updates it. |
-| `description` | no | One line, at most 300 characters. |
-| `icon` | no | Where the tile lives, relative to this file — `../icons/<slug>.svg`. A path, never markup and never a URL. Without one the app shows the game's text mark. |
-| `appIcon` | no | Where the game's own square app icon lives, relative to this file — `../app-icons/<slug>.webp`. A PNG or WebP, never a URL. Without one the small game pills show the game's initials. |
-| `report.confirmation` | no | `opponent` (the other captain agrees) or `admin`. |
-| `report.confirmTimeoutMin` | no | How long the opponent has before it goes to an admin. |
-| `stats` | no | Up to 40 fields. `type` is `integer`, `decimal` or `text`; `scope` is `player` or `team`. |
-| `account` | no | The account players need for this game, as a sign-in provider: `steam`, `epic`, `discord`, `google`, `github`, `twitch` or `oidc`. It lists the game under that account on people's connections page (Rocket League → Epic Games). Leave it out when the game is on several platforms. Needs an instance that knows the field (older 3.0 betas refuse it). |
+## Documentation
 
-Unknown fields are refused rather than ignored, so a pack written for a newer
-schema fails loudly instead of quietly doing less than it says.
+Full docs at **[docs.autotournament.gg](https://docs.autotournament.gg)**. In this repo:
 
-## Tiles
+- [Pack format, tiles, app icons and repo layout](docs/FORMAT.md)
 
-A tile is a square SVG, full bleed, drawn in the Auto Tournament palette —
-every fill written as `fill="var(--at-ember, #ff6a3d)"` with a hex fallback,
-so the tile follows whatever theme the instance is using and still looks right
-opened on its own. The variables are listed in the platform repo under
-`brand/modules/README.md`.
+## Contributing
 
-Tiles are checked on import against a strict allowlist of elements and
-attributes, and **rejected, not stripped**, if they contain anything else. A
-tile is inlined into the admin's page, so a `<script>`, an `onload=`, a
-`<foreignObject>` or a reference to another host is a refusal with a reason.
-Run your SVG through SVGO first; the platform repo has the config.
+To add a game:
 
-## App icons
-
-The tile is our art. The app icon is the game's own: the square icon players
-know it by, the one on their phone, desktop or launcher. The app draws it in
-the 20 px game pills ("What do you play?", a profile's games), where a player
-has to pick out their game at a glance and a wide wordmark shrinks to a smear.
-
-An app icon is a **square PNG or WebP, 128 × 128, at most 25 KB**. The
-platform checks the bytes, not the file name — a file that is not a PNG or
-WebP, is not square, is outside 32–512 px or is over 25 KB is refused on
-import. Never a slice of a wordmark: if a game has no square icon, leave
-`appIcon` out.
-
-Record where every icon came from in [`app-icons/SOURCES.md`](app-icons/SOURCES.md).
-Game icons are trademarks of their owners and are used only to identify the
-game.
-
-## Layout
-
-    catalog.json            the game catalog: every pack, and signed code modules
-    index.json              every pack in this repo (read by 3.0 beta instances)
-    packs/<slug>.json       one game
-    icons/<slug>.svg        its tile
-    app-icons/<slug>.webp   its square app icon, and SOURCES.md
-
-A pack names its tile rather than carrying it, so the JSON stays something a
-person can read and a reviewer can diff.
-
-### index.json
-
-Each entry repeats just enough for the app to draw a card before it downloads
-anything: the slug, name, legacy IGDB id (older packs only), version, engine, a
-one-line description, the pack's path, the tile's path *relative to this file*
-(`icons/<slug>.svg`, without the `../`), and the app icon's the same way
-(`app-icons/<slug>.webp`).
-
-```json
-{
-  "schema": 1,
-  "packs": [
-    {
-      "slug": "call-of-duty",
-      "name": "Call of Duty",
-      "version": "1.0.0",
-      "engine": "manual-report",
-      "description": "One line.",
-      "file": "packs/call-of-duty.json",
-      "icon": "icons/call-of-duty.svg",
-      "appIcon": "app-icons/call-of-duty.webp"
-    }
-  ]
-}
-```
-
-### catalog.json
-
-What Auto Tournament 3.0 reads: the one list an admin installs games from.
-`packs` is exactly `index.json`'s list — keep the two the same. `modules`
-lists code modules (CS2 first) and their releases:
-
-```json
-{
-  "schema": 1,
-  "packs": [ … ],
-  "modules": [
-    {
-      "id": "cs2",
-      "name": "Counter-Strike 2",
-      "description": "One line.",
-      "icon": "icons/cs2.svg",
-      "releases": [
-        {
-          "version": "3.0.0",
-          "serverApi": "^0.1.0",
-          "clientApi": "^0.2.0",
-          "url": "https://github.com/Auto-Tournament/auto-tournament/releases/download/module-cs2-v3.0.0/cs2-3.0.0.atmod",
-          "sha256": "…",
-          "size": 1234567
-        }
-      ]
-    }
-  ]
-}
-```
-
-A module entry is pasted from the `catalog-entry.json` its release publishes.
-That entry names its tile `icons/<id>.svg`; the release attaches the tile as
-`<id>.svg` — add it here at that path.
-Nothing here is trusted because it is listed: an instance installs a code
-module only if the release is signed by a key compiled into the platform, and
-downloads only from `https://github.com/Auto-Tournament/`.
-
-## Adding a game
-
-1. Write `packs/<slug>.json`.
+1. Write `packs/<slug>.json` ([format](docs/FORMAT.md)).
 2. Put its tile at `icons/<slug>.svg` and point `icon` at `../icons/<slug>.svg`.
 3. If the game has a square app icon, put it at `app-icons/<slug>.webp` (128 × 128, at most 25 KB), point `appIcon` at `../app-icons/<slug>.webp`, and add a row to `app-icons/SOURCES.md`.
 4. Add the game to `index.json` and to `packs` in `catalog.json`, with `icon` as `icons/<slug>.svg` (and `appIcon` as `app-icons/<slug>.webp`).
 5. Open a pull request.
 
-Please only add a game you would actually run a tournament for, with a tile
-you have the right to share.
+Only add a game you would actually run a tournament for, with a tile you drew or have the right to share. Before your first pull request is merged you'll be asked to sign the [Contributor License Agreement](CLA.md).
 
 ## Sponsors
 
-Your logo here — [sponsor Auto Tournament](https://discord.gg/n7gHYau7aW) to be listed.
+Auto Tournament is built by one person. A sponsorship pays for development and test servers: [GitHub Sponsors](https://github.com/sponsors/sivert-io) or [Ko-fi](https://ko-fi.com/sivert).
 
-## Licence
+<!-- sponsors:start -->
+<!-- sponsors:end -->
 
-[PolyForm Noncommercial 1.0.0](LICENSE), for everything in this repository: the
-pack files and the tiles. The same licence as the platform: free to use, change
-and share for non-commercial purposes; commercial use needs a licence from the
-author. See [pricing](https://autotournament.gg/pricing) and
-[Licensing and commercial use](https://docs.autotournament.gg/reference/licensing).
+## License
 
-A Platform license covers the game packs used with it; there is no separate
-price for packs.
-
-Packs published here before 24 September 2026 were MIT and stay MIT.
-
-The tiles are Auto Tournament's own artwork — drawn for this project, not the
-games' own logos or key art. Adding a game means adding a tile you drew or
-have the right to share, not one you found.
-
-Before your first pull request is merged you'll be asked to sign the
-[Contributor License Agreement](CLA.md) with a comment on the pull request.
+Everything here, pack files and tiles, is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE). Copyright (c) 2026 Sivert Gullberg Hansen. Free for non-commercial use; a Platform license covers the packs used with it, see [pricing](https://autotournament.gg/pricing). Packs published here before 24 September 2026 were MIT and stay MIT.
