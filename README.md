@@ -53,4 +53,6 @@ Auto Tournament is built by one person. A sponsorship pays for development and t
 
 ## License
 
-Everything here, pack files and tiles, is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE). Copyright (c) 2026 Sivert Gullberg Hansen. Free for non-commercial use; a Platform license covers the packs used with it, see [pricing](https://autotournament.gg/pricing). Packs published here before 24 September 2026 were MIT and stay MIT.
+The pack files and the tiles (`icons/`) are licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE). Copyright (c) 2026 Sivert Gullberg Hansen.
+
+**Not covered:** the app icons in `app-icons/` are the games' own icons and their owners' trademarks. They are not ours to license, and the license above does not apply to them. They are used only to show which game a pack is for; no endorsement is implied. [app-icons/SOURCES.md](app-icons/SOURCES.md) says where each came from, and a rights holder who wants theirs removed only has to open an issue. Game names are their owners' trademarks too. Free for non-commercial use; a Platform license covers the packs used with it, see [pricing](https://autotournament.gg/pricing). Packs published here before 24 September 2026 were MIT and stay MIT.
