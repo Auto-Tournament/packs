@@ -1,0 +1,29 @@
+name: Pack problem
+description: A pack is wrong, or does not import
+labels: [bug]
+body:
+  - type: input
+    id: pack
+    attributes:
+      label: Pack
+      description: The file in `packs/`.
+      placeholder: packs/rocket-league.json
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong
+      description: What you did, what you expected, and what happened instead. Drag screenshots in here.
+      placeholder: |
+        Importing it on the Modules page says "…". Or: the result form asks for rounds, but the game has none.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Auto Tournament version
+      description: Shown under the site name on the admin home page.
+      placeholder: '3.0.14'
+    validations:
+      required: true

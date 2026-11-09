@@ -1,0 +1,39 @@
+name: Request a game
+description: Ask for a pack for a game you would run a tournament for
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A pack is for a game where the teams report the result: Rocket League, chess, a fighting game on a console. You can also write the pack yourself, see [the format](https://github.com/Auto-Tournament/packs/blob/main/docs/FORMAT.md).
+  - type: input
+    id: game
+    attributes:
+      label: Game
+      placeholder: Gran Turismo 7
+    validations:
+      required: true
+  - type: textarea
+    id: format
+    attributes:
+      label: How a match works
+      description: Team size, best of how many, and how you tell who won.
+      placeholder: |
+        1v1, best of 3 races. The faster driver wins a race.
+    validations:
+      required: true
+  - type: textarea
+    id: stats
+    attributes:
+      label: Player stats worth tracking
+      description: Optional.
+      placeholder: Fastest lap
+  - type: checkboxes
+    id: tournament
+    attributes:
+      label: Before you send it
+      options:
+        - label: I would run a tournament for this game on Auto Tournament
+          required: true
+        - label: I searched the existing packs and issues
+          required: true
