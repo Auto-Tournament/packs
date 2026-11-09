@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Auto Tournament bug or feature
+    url: https://github.com/Auto-Tournament/auto-tournament/issues/new/choose
+    about: Problems with the Modules page or manual result reporting itself.
+  - name: Pack format
+    url: https://github.com/Auto-Tournament/packs/blob/main/docs/FORMAT.md
+    about: How to write a pack and its tile.
+  - name: Discord
+    url: https://discord.gg/n7gHYau7aW
+    about: Questions and help from the community.

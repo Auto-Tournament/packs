@@ -1,0 +1,21 @@
+name: Remove an app icon or game name
+description: For rights holders who want their icon or name taken out
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The icons in `app-icons/` belong to their owners and are only used to show which game a pack is for. [app-icons/SOURCES.md](https://github.com/Auto-Tournament/packs/blob/main/app-icons/SOURCES.md) lists where each one came from. Tell us which one to remove and it goes.
+  - type: input
+    id: what
+    attributes:
+      label: Which icon or pack
+      placeholder: app-icons/rocket-league.webp
+    validations:
+      required: true
+  - type: input
+    id: who
+    attributes:
+      label: Who you represent
+      description: The company or person that owns the icon or name.
+    validations:
+      required: true
